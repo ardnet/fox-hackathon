@@ -19,9 +19,9 @@
 
     <script>
       // Local npm testing
-      // var host = location.origin.replace(/^http/, 'ws');
-      // var ws = new WebSocket(host);
-      var ws = new WebSocket('ws://rocky-sierra-19135.herokuapp.com/');
+      var host = location.origin.replace(/^http/, 'ws');
+      var ws = new WebSocket(host);
+      // var ws = new WebSocket('ws://rocky-sierra-19135.herokuapp.com/');
       ws.onmessage = function (event) {
         var li = document.createElement('li');
         li.innerHTML = JSON.parse(JSON.stringify(event.data));
