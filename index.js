@@ -38,13 +38,10 @@ wss.on("connection", function(ws) {
   con.query(query, function(err,rows){
   	if (err) throw err;
 
-  	console.log('Data received from Db:\n');
-  	console.log(rows);
+  	var id = setInterval(function() {
+      ws.send(JSON.stringify(rows))
+    }, 5000)
   })
-
-  var id = setInterval(function() {
-    ws.send(JSON.stringify(rows))
-  }, 5000)
 
   console.log("websocket connection open")
 
