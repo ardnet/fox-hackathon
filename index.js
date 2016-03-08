@@ -74,7 +74,7 @@ wss.on("connection", function(ws) {
   
   var id = setInterval(function() {
 
-  	var query = "SELECT * FROM popular_content ORDER BY 'view_count' DESC limit 3";
+  	var query = "SELECT * FROM popular_content ORDER BY view_count DESC limit 3";
 
   	con.query(query, function(err,rows){
       if (err) throw err;
