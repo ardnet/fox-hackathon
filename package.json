@@ -6,6 +6,8 @@
     "url": "https://github.com/heroku-examples/node-ws-test.git"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
+    "connect": "^3.4.1",
     "express": "^4.4.5",
     "mysql": "2.10.2",
     "pg": "4.5.1",
