@@ -33,15 +33,15 @@ console.log("websocket server created")
 
 wss.on("connection", function(ws) {
   
-  var query = "SELECT * FROM popular_content ORDER BY 'view_count' DESC limit 3";
+  var id = setInterval(function() {
 
-  con.query(query, function(err,rows){
-  	if (err) throw err;
+  	var query = "SELECT * FROM popular_content ORDER BY 'view_count' DESC limit 3";
 
-  	var id = setInterval(function() {
+  	con.query(query, function(err,rows){
+      if (err) throw err;
       ws.send(JSON.stringify(rows))
-    }, 5000)
-  })
+  	})    
+  }, 5000)
 
   console.log("websocket connection open")
 
