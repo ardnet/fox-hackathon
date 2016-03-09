@@ -30,5 +30,37 @@ heroku open
 
 ## API Documentation:
 
+### Page View Add:
+
+Will increment the number of page views by 1 for a given URL.
+
+* **URL**
+
+  /view_add
+
+* **Method:**
+
+  `POST`
+
+* **Data Params**
+
+  nid: 1234
+  title: 'Cool Video Title'
+  thumb: 'http://foo.com/path/to/image.jpg'
+  type: 'video'
+  url: 'http://foo.com/path/to/video'
+  token: 'abcdEFG'
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `Success!`
+ 
+* **Error Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `Authentication Failed. Invalid API Token.`
+ 
+
 ## TODO:
 * Add some way to automatically create database table schema on project init.
