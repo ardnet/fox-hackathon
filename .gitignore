@@ -3,5 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+# Local env variables
+.env
+
 # Dependency directories
 node_modules
+sample_env

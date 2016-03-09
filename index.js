@@ -15,14 +15,15 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 var port = process.env.PORT || 5000
+console.log(process.env.DATABASE_URL);
 
 // Set up MySQL connection.
 var mysql = require("mysql")
 var con = mysql.createConnection({
-  host: "sherron.cq0y78xmuomp.us-east-1.rds.amazonaws.com",
-  database: "hackathon",
-  user: "admin",
-  password: "admin1234"
+  host: process.env.DATABASE_URL,
+  database: process.env.DATABASE,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASS
 });
 
 con.connect(function(err){
