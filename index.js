@@ -37,25 +37,33 @@ con.connect(function(err){
 // Set REST endpoint to add page views from Drupal to our DB.
 app.use('/view_add', function (req, res, next) {
 
-  // Parse POST info.
-  var body = req.body;
-  var insert_data = {
-  	nid: body.nid, 
-  	title: body.title, 
-  	thumb: body.thumb,
-  	type: body.type,
-  	url: body.url,
-  	view_count: 1
+  // Bail out if bad token.
+  console.log('posted token: ' + req.body.token )
+  console.log('config token: ' + process.env.API_TOKEN) 
+  if (req.body.token != process.env.API_TOKEN) {
+  	res.end('Authentication Failed. Invalid API Token.')
   }
+  else {
 
-  // Check for an existing record and update, else insert.
-  var insert = "INSERT INTO popular_content SET ? ON DUPLICATE KEY UPDATE view_count = view_count + 1";
-  insert_query = con.query(insert, insert_data, function(err, result) {
-  	console.log(insert_query.sql);
-  	// Update if one exists.
-  })
+    // Parse POST info.
+    var body = req.body;
+    var insert_data = {
+  	  nid: body.nid, 
+  	  title: body.title, 
+  	  thumb: body.thumb,
+  	  type: body.type,
+  	  url: body.url,
+  	  view_count: 1
+    }
 
-  res.end('Success!');
+    // Check for an existing record and update, else insert.
+    var insert = "INSERT INTO popular_content SET ? ON DUPLICATE KEY UPDATE view_count = view_count + 1";
+    insert_query = con.query(insert, insert_data, function(err, result) {
+  	  console.log(insert_query.sql);
+    })
+
+    res.end('Success!');
+  }
 });
 
 // Handle default route to ask for a socket connection (client browser).
